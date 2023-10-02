@@ -34,10 +34,6 @@ def get_user_by_id(user_id):
     data = request.get_json(silent=True)
     if data is None:
         return "Not a JSON", 400
-    if "email" not in data:
-        return "Missing email", 400
-    if "password" not in data:
-        return "Missing password", 400
     nope = {"id", "email", "created_at", "updated_at"}
     [setattr(user, key, val) for key, val in data.items() if key not in nope]
     user.save()
